@@ -1,4 +1,4 @@
-# Business to Business
+## Business to Business
 
 ## Overview
 
