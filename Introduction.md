@@ -1,72 +1,61 @@
-## Business to Business
+# Introduction Updating content 
 
-## Overview
+## Zustand is the most popular state management library
 
-This guidance is relevant to all project stakeholders. We recommend reading it in its entirety at least once, even if you've already started your journey with Auth0. We provide a Project Planning Guide in PDF format, details about how to get started with each phase of the implementation process, and checklists to help you manage the tasks in each phase.
+A small, fast, and scalable bearbones state management solution. Zustand has a comfy API based on hooks. It isn't boilerplate or opinionated, but has enough convention to be explicit and flux-like. Its fun to have such .
 
-## Project Planning Guide
+![null](https://raw.githubusercontent.com/pmndrs/zustand/main/docs/bear.jpg)
 
-We provide planning guidance in PDF format that you can download and refer to for details about our recommended strategies.
 
-## Multiple Organization Architecture (Multitenancy)
 
-Many B2B platforms implement some form of isolation and/or branding for their customers' organization, and this can add complexity to any Identity and Access Management (IAM) system. If this applies to you, then we recommend you take some time to read through our guidance and best practice advice for this type of environment.
+Don't disregard it because it's cute, it has claws! Lots of time was spent to deal with common pitfalls, like the dreaded [zombie child problem](https://react-redux.js.org/api/hooks#stale-props-and-zombie-children), [React concurrency](https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md), and [context loss](https://github.com/facebook/react/issues/13332) between mixed renderers. It may be the one state manager in the React space that gets all of these right.
 
-## Best Practices
+You can try a live demo [here](https://codesandbox.io/p/sandbox/dazzling-moon-itop4).
 
-Auth0 provides recommendations and best practice suggestions in an ad hoc way throughout this guide in panels like this one. You can also obtain detailed guidance regarding specific functionality by speaking with your account representative or a member of our Auth0 Professional Services team.
 
-## Architecture
 
-How to configure your Auth0 tenant architecture affects your B2B IAM implementation.
+# Installation
 
-## Provisioning
+Zustand is available as a package on NPM for use:
 
-About user provisioning functionality and considerations for your B2B IAM implementation.
+```bash
+# NPM
+npm install zustand
+# Or, use any package manager of your choice.
+```
 
-## Authentication
 
-How authentication works in your B2B IAM implementation.
+# First create a store
 
-## Branding
+Your store is a hook! You can put anything in it: primitives, objects, functions. The `set `function merges the state.
 
-How to configure Auth0 items to reflect your brand and desired user experience.
+```javascript
+import { create } from 'zustand'
 
-## Deployment Automation
+const useStore = create((set) => ({
+  bears: 0,
+  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 }),
+  updateBears: (newBears) => set({ bears: newBears }),
+}))
+```
 
-How Auth0 tooling helps to automate tenant deployment.
 
-## Quality Assurance
+# Then bind your components, and that's it!
 
-About quality assurance considerations for your B2B IAM implementations.
+You can use the hook anywhere, without the need of providers. Select your state and the consuming component will re-render when that state changes.
 
-## Profile Management
+```javascript
+function BearCounter() {
+  const bears = useStore((state) => state.bears)
+  return <h1>{bears} around here...</h1>
+}
 
-About user profile management planning considerations for your B2B IAM implementation.
+function Controls() {
+  const increasePopulation = useStore((state) => state.increasePopulation)
+  return <button onClick={increasePopulation}>one up</button>
+}
+```
 
-## Authorization
 
-About user authorization and related planning considerations for your B2B IAM implementation.
-
-## Logout
-
-About user logout planning considerations for your B2B IAM implementation.
-
-## Operations
-
-How to operationalize your Auth0 tenant environments.
-
-## Launch Preparation
-
-About launch preparation considerations for your B2B IAM implementation.
-
-## Implementation Planning Checklists
-
-Use the links below to download a spreadsheet that includes tasks for each phase of a Software Development Lifecycle (SDLC) project:
-
-- Analyze Checklist
-- Design Checklist
-- Build Checklist
-- Test Checklist
-- Deploy Checklist
-- Monitor Checklist
+In next section we will learn about managing state in zustand
