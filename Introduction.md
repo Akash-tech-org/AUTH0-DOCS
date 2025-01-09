@@ -8,7 +8,7 @@ A small, fast, and scalable bearbones state management solution. Zustand has a c
 
 
 
-Don't disregard it because it's cute, it has claws! Lots of time was spent to deal with common pitfalls, like the dreaded [zombie child problem](https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md), [React concurrency](https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md), and [context loss](https://github.com/facebook/react/issues/13332) between mixed renderers. It may be the one state manager in the React space that gets all of these right.
+Don't disregard it because it's cute, it has claws! Lots of time was spent to deal with common pitfalls, like the dreaded [zombie child problem](https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md), [React concurrency](www.documentthing.com), and [context loss](https://github.com/facebook/react/issues/13332) between mixed renderers. It may be the one state manager in the React space that gets all of these right.
 
 You can try a live demo [here](https://codesandbox.io/p/sandbox/dazzling-moon-itop4).
 
